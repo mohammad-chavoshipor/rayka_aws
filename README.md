@@ -43,7 +43,6 @@ Once you've satisfied the prerequisites, you can run Rayka. Follow these steps:
     ```
     python manage.py runserver
     ```
-
     The server will start, and you should see output indicating the server is running at a specific URL (e.g., `http://127.0.0.1:8000/`). You can access the API from this URL.
 
 4. **Test Endpoints**: You can test the API endpoints by using tools like [curl](https://curl.se/) or [Postman](https://www.postman.com/) or by sending HTTP requests programmatically.
@@ -53,12 +52,23 @@ Once you've satisfied the prerequisites, you can run Rayka. Follow these steps:
       POST http://localhost:8000/api/models/
       ```
       Include the JSON data for the device model in the request body.
+      
+      ![s1](https://github.com/mohammad-chavoshipor/rayka_aws/blob/master/screen/s1.png?raw=true)
 
+
+    - To store a new device , make a POST request to:
+      ```
+      POST http://localhost:8000/api/devices/
+      ```
+      
+      ![s2](https://github.com/mohammad-chavoshipor/rayka_aws/blob/master/screen/s2.png?raw=true)
     - To retrieve a device by its ID, make a GET request to:
       ```
       GET http://localhost:8000/api/devices/{id}/
       ```
       Replace `{id}` with the ID of the device you want to retrieve.
+
+      ![s3](https://github.com/mohammad-chavoshipor/rayka_aws/blob/master/screen/s3.png?raw=true)
 
 
 ### Test
