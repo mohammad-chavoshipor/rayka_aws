@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["./entry.sh"]
+    restart: always
+    volumes:
+      - ./:/usr/src/app
+    networks:
+      - djangonetwork
+    ports:
+      - "8000:8000"
+
+
+networks:
+  djangonetwork:
+    driver: bridge
