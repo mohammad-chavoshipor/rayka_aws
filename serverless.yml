@@ -2,8 +2,8 @@ service: serverless-django
 frameworkVersion: '3'
 
 plugins:
-  - serverless-python-requirements
   - serverless-wsgi
+  - serverless-python-requirements
 
 custom:
   wsgi:
@@ -15,18 +15,24 @@ custom:
 provider:
   name: aws
   runtime: python3.8
+  region: eu-central-1
+
 
 functions:
-  app:
+  api:
     handler: wsgi_handler.handler
     events:
-      - httpApi:
-          path: /api/devices/
-          method: POST
-      - httpApi:
-          path: /api/devices/{proxy+}
-          method: GET
-      - httpApi:
-          path: /api/models/
-          method: POST
-      # - http: 'ANY {proxy+}'
+      - httpApi: '*'
+
+# functions:
+#   get:
+#     handler: rest/get.get
+#     events:
+#       - http:
+#           path: /api/device/{id}
+#           method: get
+#           cors: true
+#           integration: lambda
+#           request:
+#             paths:
+#               id: true
