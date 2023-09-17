@@ -7,7 +7,7 @@ plugins:
 
 custom:
   wsgi:
-    app: serverless_django.wsgi.application
+    app: rayka.wsgi.application
     packRequirements: false
   pythonRequirements:
     dockerizePip: non-linux
@@ -16,23 +16,18 @@ provider:
   name: aws
   runtime: python3.8
   region: eu-central-1
-
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:Scan
+        - dynamodb:GetItem
+      Resource: "*"
 
 functions:
-  api:
-    handler: wsgi_handler.handler
-    events:
-      - httpApi: '*'
-
-# functions:
-#   get:
-#     handler: rest/get.get
-#     events:
-#       - http:
-#           path: /api/device/{id}
-#           method: get
-#           cors: true
-#           integration: lambda
-#           request:
-#             paths:
-#               id: true
+  - app:
+      handler: wsgi_handler.handler
+      events:
+        - http: ANY /
+        - http: ANY /{proxy+}
+      timeout: 30

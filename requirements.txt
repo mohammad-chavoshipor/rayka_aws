@@ -6,3 +6,4 @@ pynamodb
 boto3
 coverage
 nanoid
+werkzeug==1.0.1

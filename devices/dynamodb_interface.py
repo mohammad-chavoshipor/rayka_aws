@@ -10,11 +10,6 @@ logger = logging.getLogger(__name__)
 
 
 class DynamodbDevicesModel:
-    def __init__(self) -> None:
-        if not DeviceModel.exists():
-            DeviceModel.create_table(wait=True)
-            logger.info("created the Device-Model-table")
-
     def create(self, data: dict, keepID: bool = False):
         device_model = DeviceModel()
         if 'id' in data.keys() and keepID:
@@ -43,11 +38,6 @@ class DynamodbDevicesModel:
 
 
 class DynamodbDevices:
-    def __init__(self) -> None:
-        if not Device.exists():
-            Device.create_table(wait=True)
-            logger.info("created the Device-table")
-
     def create(self, data: dict, keepID: bool = False):
         device = Device()
         if 'id' in data.keys() and keepID:
